@@ -16,8 +16,17 @@ may or may not follow the same.
 
 ## How to run this locally?
 
-    $ git clone git@github.com:sindhus/flask-mega-tutorial.git # clone this repo
+1. Clone this repo
+    $ git clone git@github.com:sindhus/flask-mega-tutorial.git
+
+2. Change into the directory...
     $ cd flask-mega-tutorial
-    $ virtualenv -p `which python2` ma  && source ma/bin/activate  # Virtualenv
-    $ pip install -r requirements.txt # Install project requirements
-    $ python runserver.py # Run server!
+
+3. Setup and enter the [Virtual environment](docs.python-guide.org/en/latest/dev/virtualenvs/)
+    $ virtualenv -p `which python2` ma  && source ma/bin/activate
+
+4. Install project requirements
+    $ pip install -r requirements.txt
+
+5. Run the app!
+    $ python runserver.py
