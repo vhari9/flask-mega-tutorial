@@ -18,10 +18,10 @@ class MailConfig():
 
 class DevelopmentConfig(Config,MailConfig):
     DEBUG = True
-    SERVER_NAME = 'myapp.dev:5000'
+    SERVER_NAME = ''
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     DATABASE = ''
     SQLALCHEMY_DATABASE_URI = '' + DATABASE
-    SECRET_KEY = 'myapp2016'
+    SECRET_KEY = ''
     CACHE_TYPE = 'simple'
