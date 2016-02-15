@@ -13,8 +13,8 @@ class MailConfig():
     MAIL_PORT = ''
     MAIL_USE_SSL = True
     MAIL_USERNAME = ''
-    MAIL_PASSWORD = ''
-    MAIL_SUPRESS_SEND = True
+    MAIL_PASSWORD = '' # If you have 2FA enabled, then use app-specific password
+    MAIL_SUPRESS_SEND = True # Email is never sent, gets logged to console
 
 class DevelopmentConfig(Config,MailConfig):
     DEBUG = True
