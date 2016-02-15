@@ -1,5 +1,7 @@
 from .. import db
 
+__all__ = ['User', 'Post']
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nick = db.Column(db.String(64), index=True, unique=True)
