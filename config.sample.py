@@ -8,7 +8,9 @@ class Config(object):
     TESTING = False
 
 class ProductionConfig(Config):
-    pass
+    LASTUSER_SERVER = 'http://auth.hasgeek.com'
+    LASTUSER_CLIENT_ID = ''
+    LASTUSER_CLIENT_SECRET = ''
 
 class MailConfig():
     # Use SMTP settings for your email provider

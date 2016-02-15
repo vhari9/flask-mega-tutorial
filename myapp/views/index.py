@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from myapp import app
 from flask import render_template
 

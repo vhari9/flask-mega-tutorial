@@ -1,21 +1,22 @@
 from .. import db
+from flask.ext.lastuser.sqlalchemy import UserBase2
+from coaster.sqlalchemy import BaseMixin
 
 __all__ = ['User', 'Post']
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nick = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
+class User(UserBase2, db.Model):
+    __tablename__ = 'user'
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
     def __repr__(self):
-        return '<User %r>' % (self.nick)
+        return '<name {}>'.format(self.name)
         
 class Post(db.Model):
+    __tablename__ = 'post'
     id = db.Column(db.Integer, primary_key = True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     
     def __repr__(self):
-        return '<Post %r>' % (self.body)
+        return '<Post {}>'.format(self.body)
