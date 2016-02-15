@@ -2,17 +2,18 @@
 
 # -*- coding: utf-8 -*-
 
-from flask import Flask, redirect, session, request, abort, render_template, flash
+from flask import Flask, redirect, session, request, abort, render_template, \
+    flash, Markup
 from coaster.views import get_next_url
 from baseframe import _
 from baseframe.forms import render_message
-from .. import app, lastuser, db
+from .. import app, lastuser
+from ..models import db
 
 @app.route('/login')
 @lastuser.login_handler
 def login():
     session['logged_in'] = True
-    flash(_('You were logged in!'), category='info')
     return {'scope':'id email/*'}
 
 @app.route('/logout')

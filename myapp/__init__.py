@@ -1,17 +1,26 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.lastuser import LastUser
+from flask.ext.lastuser.sqlalchemy import UserManager
+import coaster.app
+
 from flask_debugtoolbar import DebugToolbarExtension
 import config
 
-__all__ = ['app', 'db', 'manager', 'lastuser']
+__all__ = ['app', 'manager', 'lastuser', 'init_for', 'db']
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.DevelopmentConfig')
-db = SQLAlchemy(app)
 lastuser = LastUser()
-lastuser.init_app(app)
 toolbar = DebugToolbarExtension(app)
 
-from myapp import views, models
+from . import views, models
+from .models import db
 
+def init_for(env):
+    coaster.app.init_app(app, env)
+    db.init_app(app)
+    db.app = app
+    lastuser.init_app(app)
+    lastuser.init_usermanager(UserManager(db, models.User))

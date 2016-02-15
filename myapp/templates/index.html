@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+    <form action="{{ url_for('add') }}" method="post" class="add_entry">
       <dl>
-        <dt>Title:
-        <dd><input type="text" size="30" name="title">
         <dt>Text:
-        <dd><textarea name="text" rows="5" cols="40"></textarea>
+        <dd><textarea name="body" rows="5" cols="40"></textarea>
         <dd><input type="submit" value="Share">
       </dl>
     </form>
@@ -14,9 +12,9 @@
   <ul class="entries">
   {% for post in posts %}
     <li>
-      <p>{{ entry.body|safe }}</p>
+      {{ post.body|safe }}
       {% if session.logged_in %}
-        <form action="/delete/{{ entry.title|e }}" method="post">
+        <form action="/delete/{{ post.body|e }}" method="post">
           <input type="submit" value="Delete" />
         </form>
       {% endif %}
