@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 class Config(object):
     DEBUG = False
     TESTING = False
@@ -21,7 +24,7 @@ class DevelopmentConfig(Config,MailConfig):
     SERVER_NAME = ''
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-    DATABASE = ''
+    DATABASE = os.path.join(basedir, '')
     SQLALCHEMY_DATABASE_URI = '' + DATABASE
     SECRET_KEY = ''
     CACHE_TYPE = 'simple'
