@@ -1,6 +1,6 @@
-from .. import db
 from flask.ext.lastuser.sqlalchemy import UserBase2
 from coaster.sqlalchemy import BaseMixin
+from . import db
 
 __all__ = ['User', 'Post']
 

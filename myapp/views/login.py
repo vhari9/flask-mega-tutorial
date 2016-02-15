@@ -6,14 +6,13 @@ from flask import Flask, redirect, session, request, abort, render_template, fla
 from coaster.views import get_next_url
 from baseframe import _
 from baseframe.forms import render_message
-from .. import app, lastuser
-from ..models import db
+from .. import app, lastuser, db
 
 @app.route('/login')
 @lastuser.login_handler
 def login():
-    flash(_('You were logged in!'), category='info')
     session['logged_in'] = True
+    flash(_('You were logged in!'), category='info')
     return {'scope':'id email/*'}
 
 @app.route('/logout')
