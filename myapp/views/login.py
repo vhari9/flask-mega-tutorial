@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# -*- coding: utf-8 -*-
-
 from flask import Flask, redirect, session, request, abort, render_template, \
-    flash, Markup
+    flash, Markup, escape
 from coaster.views import get_next_url
 from baseframe import _
 from baseframe.forms import render_message
