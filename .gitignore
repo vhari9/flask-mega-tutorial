@@ -3,4 +3,4 @@ config.py
 .idea
 ma/
 *.db
-static/.webassets-cache
+.webassets-cache
