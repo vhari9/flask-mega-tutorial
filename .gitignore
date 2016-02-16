@@ -4,3 +4,4 @@ config.py
 ma/
 *.db
 .webassets-cache
+*.log
