@@ -3,7 +3,7 @@
     {% if session.logged_in %}
     <form action="{{ url_for('add') }}" method="post" class="add_entry">
       <dl>
-        <dt>Post:
+        <dt>Say:</dt>
         <dd><textarea name="body" rows="5" cols="40"></textarea>
         <dd><input type="submit" value="Share">
       </dl>

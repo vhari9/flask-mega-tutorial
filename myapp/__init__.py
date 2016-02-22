@@ -8,7 +8,8 @@ from flask_bootstrap import Bootstrap
 import coaster.app
 import config
 from werkzeug.contrib.profiler import ProfilerMiddleware
-# from flask_debugtoolbar import DebugToolbarExtension
+import logging
+import sys
 
 __all__ = ['app', 'manager', 'lastuser', 'init_for', 'db']
 
@@ -22,6 +23,12 @@ from .models import db
 def init_for(env):
     if app.config['PROFILE']:
         app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[30])
+
+    if app.debug:
+        # Turn off Werkzeug debug in console
+        logging.getLogger('werkzeug').setLevel(logging.ERROR)
+        # Enable our own logging for signals!
+        logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
     coaster.app.init_app(app, env)
     db.init_app(app)
     db.app = app
@@ -29,4 +36,5 @@ def init_for(env):
     lastuser.init_app(app)
     lastuser.init_usermanager(UserManager(db, models.User))
     Bootstrap(app)
-    # toolbar = DebugToolbarExtension(app)
+
+
